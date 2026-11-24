@@ -10,6 +10,12 @@ if (!outDir) {
   process.exit(1);
 }
 
+const charCount = [...OUTPUT].length;
+if (charCount < 1 || charCount > 200) {
+  console.error(`error: entry must be 1-200 characters, got ${charCount}`);
+  process.exit(1);
+}
+
 try {
   fs.mkdirSync(outDir, { recursive: true });
   fs.writeFileSync(path.join(outDir, "entry.txt"), OUTPUT, "utf8");
